@@ -14,8 +14,8 @@ import java.util.Properties;
 
 public class Main {
 
-  private static final String WELCOME_MESSAGE = "BatchImport v0.9 (Image Importer for DocBase)\n";
-  private static final String USAGE = "Usage: cli [-date=[[DD.]MM.]YYYY] -database=<database> <path-with-wildcards>";
+  private static final String WELCOME_MESSAGE = "myArchiveCLI v1.0 (Command Line Interface for myArchive)\n";
+  private static final String USAGE = "Usage: myarchive [-date=[[DD.]MM.]YYYY] -database=<database> <path-with-wildcards>";
   private static final String PROPERTIES = "myarchive.properties";
   private static final String OPTION_DATE = "-date=";
   private static final String OPTION_DATABASE = "-database=";
