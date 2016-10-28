@@ -1,10 +1,8 @@
 package de.koessel.myarchive.cli;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import de.koessel.myarchive.MyArchiveProperties;
 import de.koessel.myarchive.document.ImageDocument;
+import de.koessel.myarchive.util.Helper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -13,23 +11,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import static de.koessel.myarchive.cli.Main.*;
+import static de.koessel.myarchive.MyArchiveProperties.*;
 
 /**
- * Created by BA23462 on 27.10.2016.
+ * Image Importer
+ * Creates thumbnails, uploads documents and files
  */
-public class Importer {
+class Importer {
 
   private static final String THUMBNAIL_SIZE_DEFAULT = "80";
 
   private List<Image> images;
-  private Properties properties;
+  private MyArchiveProperties properties;
 
   private static Logger logger = LogManager.getLogger();
 
-  public Importer(Properties properties, List<File> files) {
+  Importer(MyArchiveProperties properties, List<File> files) {
     this.properties = properties;
     images = new ArrayList<>();
     for (File file : files) {
@@ -37,28 +35,10 @@ public class Importer {
     }
   }
 
-  public void run() throws Exception {
-    logProperties();
-    checkServer();
+  void run() throws Exception {
+    Helper.logProperties(properties);
+    Helper.checkServer(properties);
     uploadImages();
-  }
-
-  private void logProperties() {
-    logger.info("---- Configured Properties ----");
-    for (String key : properties.stringPropertyNames()) {
-      logger.info(key + ": " + properties.getProperty(key));
-    }
-    logger.info("---- Configured Properties ----");
-  }
-
-  private void checkServer() throws UnirestException {
-    HttpResponse<JsonNode> response = Unirest.get(properties.getProperty(PROPERTY_SERVER)).asJson();
-    JSONObject json = response.getBody().getObject();
-    if (response.getStatus() == 200 && json.has("couchdb")) {
-      logger.info("Connnected to CouchDB Version " + json.get("version"));
-    } else {
-      throw new IllegalArgumentException("Connection to CouchDB failed!");
-    }
   }
 
   private void createThumbnail(Image image) {
@@ -90,23 +70,15 @@ public class Importer {
   private void deleteImage(Image image) {
     if (image.hasThumbnail()) {
       logger.info("Deleting thumbnail " + image.getThumbnailImage());
-      deleteFile(image.getThumbnailImage());
+      Helper.deleteFile(image.getThumbnailImage());
     }
     if ("false".equals(properties.getProperty(PROPERTY_KEEP_IMAGES, "true"))) {
       logger.info("Deleting image " + image.getFullImage());
-      deleteFile(image.getFullImage());
+      Helper.deleteFile(image.getFullImage());
     }
   }
 
   private void verifyUpload() {
-  }
-
-  private void deleteFile(File file) {
-    if (file != null) {
-      if (!file.delete()) {
-        logger.warn(file + " could not be deleted!");
-      }
-    }
   }
 
 }

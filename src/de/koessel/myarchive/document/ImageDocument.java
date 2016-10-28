@@ -6,7 +6,7 @@ import java.util.Arrays;
 import static de.koessel.myarchive.document.ImageDocument.State.*;
 
 /**
- * Created by BA23462 on 27.10.2016.
+ * JSON-Object for the database document
  */
 public class ImageDocument {
 

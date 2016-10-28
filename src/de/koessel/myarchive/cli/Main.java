@@ -1,5 +1,6 @@
 package de.koessel.myarchive.cli;
 
+import de.koessel.myarchive.MyArchiveProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,28 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import static de.koessel.myarchive.MyArchiveProperties.*;
+
 public class Main {
 
   private static final String WELCOME_MESSAGE = "myArchiveCLI v1.0 (Command Line Interface for myArchive)\n";
   private static final String USAGE = "Usage: myarchive [-date=[[DD.]MM.]YYYY] -database=<database> <path-with-wildcards>";
-  private static final String PROPERTIES = "myarchive.properties";
   private static final String OPTION_DATE = "-date=";
   private static final String OPTION_DATABASE = "-database=";
   private static final String OPTION_KEEP_IMAGES = "-keep";
-
-  public static final String PROPERTY_THUMBNAIL_SIZE = "thumbnail.size";
-  public static final String PROPERTY_KEEP_IMAGES = "keepImages";
-  public static final String PROPERTY_REFERENCE_DATE = "referenceDate";
-  public static final String PROPERTY_DATABASE = "database";
-  public static final String PROPERTY_SERVER = "couchdb.url";
 
   private static Logger logger = LogManager.getLogger();
 
   public static void main(String[] args) {
     System.out.println(WELCOME_MESSAGE);
     try {
-      Properties properties = new Properties();
-      properties.load(new FileInputStream(PROPERTIES));
+      MyArchiveProperties properties = new MyArchiveProperties();
+      properties.load(new FileInputStream(MYARCHIVE_PROPERTIES));
       List<File> files = readOptionsAndFiles(args, properties);
       Importer importer = new Importer(properties, files);
       importer.run();

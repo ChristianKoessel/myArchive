@@ -8,27 +8,27 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by BA23462 on 27.10.2016.
+ * A container for image files and their thumbnails
  */
-public class Image {
+class Image {
 
-  public static final String THUMBNAIL_FORMAT = "png";
+  static final String THUMBNAIL_FORMAT = "png";
   private File fullImage;
   private File thumbnailImage;
 
-  public Image(File fullImage) {
+  Image(File fullImage) {
     this.fullImage = fullImage;
   }
 
-  public File getFullImage() {
+  File getFullImage() {
     return fullImage;
   }
 
-  public File getThumbnailImage() {
+  File getThumbnailImage() {
     return thumbnailImage;
   }
 
-  public void createThumbnailImage(int size) throws IOException {
+  void createThumbnailImage(int size) throws IOException {
     List<File> thumbnail = Thumbnails.of(fullImage)
           .allowOverwrite(true)
           .size(size, size)
@@ -39,11 +39,11 @@ public class Image {
     }
   }
 
-  public String getName() {
+  String getName() {
     return fullImage.getName();
   }
 
-  public boolean hasThumbnail() {
+  boolean hasThumbnail() {
     return (thumbnailImage != null && thumbnailImage.exists());
   }
 }
