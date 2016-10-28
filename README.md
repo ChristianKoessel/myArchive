@@ -1,5 +1,5 @@
 # myArchive
-A simple personal document archive for home use, based on CouchDB, using HTML5, Javascript and Java
+A simple document archive for home use, based on CouchDB, written in HTML5, Javascript and Java, using IntelliJ IDEA.
 
 The archive is intended to store images of documents (scanned or taken by a camera) or documents itself (e.g. PDF).
 The files are stored in a CouchDB database as documents with attachments.

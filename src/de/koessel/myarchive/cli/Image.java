@@ -7,12 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import static de.koessel.myarchive.MyArchiveProperties.THUMBNAIL_FORMAT;
+
 /**
  * A container for image files and their thumbnails
  */
 class Image {
 
-  static final String THUMBNAIL_FORMAT = "png";
   private File fullImage;
   private File thumbnailImage;
 

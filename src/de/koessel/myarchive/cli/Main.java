@@ -23,6 +23,7 @@ public class Main {
   private static final String OPTION_DATABASE = "-database=";
   private static final String OPTION_KEEP_IMAGES = "-keep";
 
+
   private static Logger logger = LogManager.getLogger();
 
   public static void main(String[] args) {
