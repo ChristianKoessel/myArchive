@@ -1,4 +1,4 @@
-package de.koessel.docbase.batchimport;
+package de.koessel.myarchive.cli;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;

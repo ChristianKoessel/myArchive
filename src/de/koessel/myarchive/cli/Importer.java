@@ -1,10 +1,10 @@
-package de.koessel.docbase.batchimport;
+package de.koessel.myarchive.cli;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import de.koessel.docbase.ImageDocument;
+import de.koessel.myarchive.document.ImageDocument;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static de.koessel.docbase.batchimport.Main.*;
+import static de.koessel.myarchive.cli.Main.*;
 
 /**
  * Created by BA23462 on 27.10.2016.

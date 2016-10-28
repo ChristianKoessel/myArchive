@@ -1,4 +1,4 @@
-package de.koessel.docbase.batchimport;
+package de.koessel.myarchive.cli;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,8 +15,8 @@ import java.util.Properties;
 public class Main {
 
   private static final String WELCOME_MESSAGE = "BatchImport v0.9 (Image Importer for DocBase)\n";
-  private static final String USAGE = "Usage: batchimport [-date=[[DD.]MM.]YYYY] -database=<database> <path-with-wildcards>";
-  private static final String PROPERTIES = "batchimport.properties";
+  private static final String USAGE = "Usage: cli [-date=[[DD.]MM.]YYYY] -database=<database> <path-with-wildcards>";
+  private static final String PROPERTIES = "myarchive.properties";
   private static final String OPTION_DATE = "-date=";
   private static final String OPTION_DATABASE = "-database=";
   private static final String OPTION_KEEP_IMAGES = "-keep";

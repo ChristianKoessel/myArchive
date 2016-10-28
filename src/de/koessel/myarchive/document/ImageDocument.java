@@ -1,9 +1,9 @@
-package de.koessel.docbase;
+package de.koessel.myarchive.document;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import static de.koessel.docbase.ImageDocument.State.*;
+import static de.koessel.myarchive.document.ImageDocument.State.*;
 
 /**
  * Created by BA23462 on 27.10.2016.

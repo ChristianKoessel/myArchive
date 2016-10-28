@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="DocBaseImport" />
+        <module name="myArchiveCLI" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DocBaseImport" target="1.8" />
+      <module name="myArchiveCLI" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
