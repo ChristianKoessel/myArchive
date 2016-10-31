@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static de.koessel.myarchive.MyArchiveProperties.THUMBNAIL_FORMAT;
+import static de.koessel.myarchive.ArchiveProperties.THUMBNAIL_FORMAT;
 
 /**
  * A container for image files and their thumbnails

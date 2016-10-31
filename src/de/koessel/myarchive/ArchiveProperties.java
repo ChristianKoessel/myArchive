@@ -1,13 +1,15 @@
 package de.koessel.myarchive;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
- * A wrapper for Properties
+ * Wrapper for all Properties (Singleton)
  */
-public class MyArchiveProperties extends Properties {
+public class ArchiveProperties extends Properties {
 
-  public static final String MYARCHIVE_PROPERTIES = "myarchive.properties";
+  private static final String MYARCHIVE_PROPERTIES = "myarchive.properties";
 
   public static final String PROPERTY_THUMBNAIL_SIZE = "thumbnail.size";
   public static final String PROPERTY_KEEP_IMAGES = "keepImages";
@@ -24,5 +26,15 @@ public class MyArchiveProperties extends Properties {
 
   public boolean isKeepImages() {
     return Boolean.parseBoolean(getProperty(PROPERTY_KEEP_IMAGES, "false"));
+  }
+
+  private static ArchiveProperties instance;
+
+  private ArchiveProperties() throws IOException {
+    load(new FileInputStream(MYARCHIVE_PROPERTIES));
+  }
+
+  public static ArchiveProperties getInstance() throws IOException {
+    return (instance == null ? instance = new ArchiveProperties() : instance);
   }
 }

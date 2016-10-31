@@ -1,6 +1,6 @@
 package de.koessel.myarchive.cli;
 
-import de.koessel.myarchive.MyArchiveProperties;
+import de.koessel.myarchive.ArchiveProperties;
 import de.koessel.myarchive.document.ImageDocument;
 import de.koessel.myarchive.util.Helper;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.koessel.myarchive.MyArchiveProperties.PROPERTY_REFERENCE_DATE;
+import static de.koessel.myarchive.ArchiveProperties.PROPERTY_REFERENCE_DATE;
 
 /**
  * Image Importer
@@ -21,11 +21,11 @@ import static de.koessel.myarchive.MyArchiveProperties.PROPERTY_REFERENCE_DATE;
 class Importer {
 
   private List<Image> images;
-  private MyArchiveProperties properties;
+  private ArchiveProperties properties;
 
   private static Logger logger = LogManager.getLogger();
 
-  Importer(MyArchiveProperties properties, List<File> files) {
+  Importer(ArchiveProperties properties, List<File> files) {
     this.properties = properties;
     images = new ArrayList<>();
     for (File file : files) {
