@@ -1,38 +1,17 @@
 package de.koessel.myarchive.util;
 
+import org.apache.commons.cli.ParseException;
+
 /**
- * Holder for name and description of a CLI command
+ * Common Interface for all commands of the CLI
  */
-public class Command {
+public interface Command {
 
-  private String name;
-  private String description;
-  private CommandRunner runner;
+  String getName();
 
-  public String getName() {
-    return name;
-  }
+  String getDescription();
 
-  public String getDescription() {
-    return description;
-  }
+  void setDescription(String description);
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public CommandRunner getRunner() {
-    return runner;
-  }
-
-  public Command(String name, String description, CommandRunner runner) {
-    this.name = name;
-    this.description = description;
-    this.runner = runner;
-  }
-
-  @Override
-  public String toString() {
-    return name;
-  }
+  int run(String[] args) throws ParseException;
 }

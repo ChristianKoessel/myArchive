@@ -25,8 +25,8 @@ class Importer {
 
   private static Logger logger = LogManager.getLogger();
 
-  Importer(ArchiveProperties properties, List<File> files) {
-    this.properties = properties;
+  Importer(List<File> files) throws IOException {
+    properties = ArchiveProperties.getInstance();
     images = new ArrayList<>();
     for (File file : files) {
       images.add(new Image(file));

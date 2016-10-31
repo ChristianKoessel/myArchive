@@ -1,10 +1,13 @@
 package de.koessel.myarchive.util;
 
+import org.apache.commons.cli.ParseException;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Container for the supported commands of the CLI
+ * Container for all supported commands of the CLI
  */
 public class Commands {
 
@@ -19,34 +22,38 @@ public class Commands {
 
   public void add(Command command) {
     commands.put(command.getName(), command);
+    defaultCommand.setDescription(getDescriptionForAllCommand());
   }
 
-  public int run(String[] args) {
+  public int run(String[] args) throws ParseException {
     if (args.length == 0) {
-      return runDefaultCommand(args);
+      return defaultCommand.run(args);
     }
     String commandString = args[0];
     if (commands.containsKey(commandString)) {
-      return commands.get(commandString).getRunner().run(args);
+      return commands.get(commandString).run(removeFirstArg(args));
     } else {
-      return runDefaultCommand(args);
+      return defaultCommand.run(args);
     }
   }
 
-  private int runDefaultCommand(String[] args) {
-    defaultCommand.getRunner().run(getCommandsDescription());
-    return -1;
+  private String[] removeFirstArg(String[] args) {
+    return Arrays.copyOfRange(args, 1, args.length);
   }
 
-  private String getCommandsDescription() {
+  private String getDescriptionForAllCommand() {
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Valid commands are:");
+    stringBuilder.append("where command is one of:");
     for (Command command : commands.values()) {
-      stringBuilder.append("\n\t").append(command);
+      stringBuilder.append("\n\t").append(command.getName());
       for (int i = 0; i < 15 - command.getName().length(); i++) {
         stringBuilder.append(' ');
       }
-      stringBuilder.append(command.getDescription());
+      if (command.getName().equals(defaultCommand.getName())) {
+        stringBuilder.append("prints out available commands");
+      } else {
+        stringBuilder.append(command.getDescription());
+      }
     }
     return stringBuilder.toString();
   }
