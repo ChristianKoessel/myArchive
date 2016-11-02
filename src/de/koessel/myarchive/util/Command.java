@@ -48,5 +48,5 @@ public interface Command {
    * @param commandLine
    * @return return code (exit code) of the command
    */
-  int run(CommandLine commandLine);
+  int run(CommandLine commandLine) throws Exception;
 }

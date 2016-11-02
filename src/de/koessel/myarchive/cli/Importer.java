@@ -18,14 +18,14 @@ import static de.koessel.myarchive.ArchiveProperties.PROPERTY_REFERENCE_DATE;
  * Image Importer
  * Creates thumbnails, uploads documents and files
  */
-class Importer {
+public class Importer {
 
   private List<Image> images;
   private ArchiveProperties properties;
 
   private static Logger logger = LogManager.getLogger();
 
-  Importer(List<File> files) throws IOException {
+  public Importer(List<File> files) throws IOException {
     properties = ArchiveProperties.getInstance();
     images = new ArrayList<>();
     for (File file : files) {
@@ -33,7 +33,7 @@ class Importer {
     }
   }
 
-  void run() throws Exception {
+  public void run() throws Exception {
     Helper.logProperties(properties);
     Helper.checkServer(properties);
     uploadImages();

@@ -28,7 +28,7 @@ public class Commands {
     defaultCommand.setDescription(getDescriptionForAllCommand());
   }
 
-  public int run(String[] args) {
+  public int run(String[] args) throws Exception {
     if (args.length == 0) {
       return runDefaultCommand(args);
     }
@@ -40,7 +40,7 @@ public class Commands {
     }
   }
 
-  private int runCommand(Command command, String[] args) {
+  private int runCommand(Command command, String[] args) throws Exception {
     args = removeFirstArg(args);
     CommandLineParser parser = new DefaultParser();
     try {
@@ -56,7 +56,7 @@ public class Commands {
     }
   }
 
-  private int runDefaultCommand(String[] args) {
+  private int runDefaultCommand(String[] args) throws Exception {
     CommandLineParser parser = new DefaultParser();
     CommandLine cmdLine = null;
     try {

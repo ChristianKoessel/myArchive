@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Main {
 
-  private static final String WELCOME_MESSAGE = "myArchiveCLI v1.0 (DefaultCommand Line Interface for myArchive)\n";
+  private static final String WELCOME_MESSAGE = "myArchiveCLI v1.0 (Command Line Interface for myArchive)\n";
   private static Logger logger = LogManager.getLogger();
 
   public static void main(String[] args) {

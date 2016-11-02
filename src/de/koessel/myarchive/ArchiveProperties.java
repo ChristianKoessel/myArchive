@@ -15,6 +15,7 @@ public class ArchiveProperties extends Properties {
   public static final String PROPERTY_KEEP_IMAGES = "keepImages";
   public static final String PROPERTY_REFERENCE_DATE = "referenceDate";
   public static final String PROPERTY_DATABASE = "database";
+  public static final String PROPERTY_TAGS = "tags";
   public static final String PROPERTY_SERVER = "couchdb.url";
 
   public static final String THUMBNAIL_FORMAT = "png";
@@ -26,6 +27,14 @@ public class ArchiveProperties extends Properties {
 
   public boolean isKeepImages() {
     return Boolean.parseBoolean(getProperty(PROPERTY_KEEP_IMAGES, "false"));
+  }
+
+  public String[] getTags() {
+    String tagString = getProperty(PROPERTY_TAGS, "");
+    if (tagString.isEmpty()) {
+      return new String[0];
+    }
+    return tagString.split(",");
   }
 
   private static ArchiveProperties instance;
