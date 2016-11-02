@@ -1,6 +1,7 @@
 package de.koessel.myarchive.cli.commands;
 
 import de.koessel.myarchive.util.DefaultCommand;
+import org.apache.commons.cli.CommandLine;
 
 /**
  * Database Initializer
@@ -8,12 +9,11 @@ import de.koessel.myarchive.util.DefaultCommand;
  */
 public class InitCommand extends DefaultCommand {
   public InitCommand() {
-    name = "init";
-    description = "initializes new database";
+    super("init", "initializes new database");
   }
 
   @Override
-  public int run(String[] args) {
+  public int run(CommandLine commandLine) {
     throw new IllegalArgumentException("Command not yet implemented!");
   }
 }

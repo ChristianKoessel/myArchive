@@ -1,6 +1,7 @@
 package de.koessel.myarchive.cli.commands;
 
 import de.koessel.myarchive.util.DefaultCommand;
+import org.apache.commons.cli.CommandLine;
 
 /**
  * System and Database Information Command
@@ -8,12 +9,11 @@ import de.koessel.myarchive.util.DefaultCommand;
  */
 public class InfoCommand extends DefaultCommand {
   public InfoCommand() {
-    name = "info";
-    description = "prints out system and database status information";
+    super("info", "prints out system and database status information");
   }
 
   @Override
-  public int run(String[] args) {
+  public int run(CommandLine commandLine) {
     throw new IllegalArgumentException("Command not yet implemented!");
   }
 }

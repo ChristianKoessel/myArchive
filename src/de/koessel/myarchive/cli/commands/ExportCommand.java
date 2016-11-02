@@ -1,6 +1,7 @@
 package de.koessel.myarchive.cli.commands;
 
 import de.koessel.myarchive.util.DefaultCommand;
+import org.apache.commons.cli.CommandLine;
 
 /**
  * Database Exporter
@@ -8,12 +9,11 @@ import de.koessel.myarchive.util.DefaultCommand;
  */
 public class ExportCommand extends DefaultCommand {
   public ExportCommand() {
-    name = "export";
-    description = "exports images and metadata from a given database";
+    super("export", "exports images and metadata from a given database");
   }
 
   @Override
-  public int run(String[] args) {
+  public int run(CommandLine commandLine) {
     throw new IllegalArgumentException("Command not yet implemented!");
   }
 }

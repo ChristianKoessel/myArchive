@@ -1,6 +1,7 @@
 package de.koessel.myarchive.cli.commands;
 
 import de.koessel.myarchive.util.DefaultCommand;
+import org.apache.commons.cli.CommandLine;
 
 /**
  * Just prints usage string
@@ -8,13 +9,12 @@ import de.koessel.myarchive.util.DefaultCommand;
 public class HelpCommand extends DefaultCommand {
 
   public HelpCommand() {
-    name = "help";
-    description = "";
+    super("help", "");
   }
 
   @Override
-  public int run(String[] args) {
-    System.out.println("Usage: myarchive [command] [options] [file [file2 [file3] ...]]");
+  public int run(CommandLine commandLine) {
+    System.out.println("usage: myarchive [command] [options] [file [file2 [file3] ...]]");
     System.out.println(description);
     System.out.println("Type 'myarchive <command> -help' for help about a specific command");
     return 0;

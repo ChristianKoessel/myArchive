@@ -13,7 +13,7 @@ public class Main {
   public static void main(String[] args) {
     System.out.println(WELCOME_MESSAGE);
     try {
-      Commands commands = new Commands(new HelpCommand());
+      Commands commands = new Commands("myarchive", new HelpCommand());
       commands.add(new InitCommand());
       commands.add(new InfoCommand());
       commands.add(new ImportCommand());
