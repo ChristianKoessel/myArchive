@@ -1,5 +1,6 @@
 package de.koessel.myarchive.cli;
 
+import com.mashape.unirest.http.Unirest;
 import de.koessel.myarchive.ArchiveProperties;
 import de.koessel.myarchive.document.ImageDocument;
 import de.koessel.myarchive.util.Helper;
@@ -35,8 +36,10 @@ public class Importer {
 
   public void run() throws Exception {
     Helper.logProperties(properties);
-    Helper.checkServer(properties);
+    Helper.checkServer();
+    Helper.checkDatabase();
     uploadImages();
+    Unirest.shutdown();
   }
 
   private void createThumbnail(Image image) {
@@ -57,9 +60,11 @@ public class Importer {
       if (properties.containsKey(PROPERTY_REFERENCE_DATE)) {
         document.setRefDate(properties.getProperty(PROPERTY_REFERENCE_DATE));
       }
-      JSONObject jsonObject = new JSONObject(document);
-      String jsonString = jsonObject.toString();
+      document.setTags(properties.getTags());
 
+      //todo: Klasse für UUID + Revision eines Dokuments
+      String uuid = Helper.createDocument(new JSONObject(document));
+      Helper.uploadAttachment(uuid, image.getFullImage());
       deleteImage(image);
     }
   }
@@ -73,9 +78,6 @@ public class Importer {
       logger.info("Deleting image " + image.getFullImage());
       Helper.deleteFile(image.getFullImage());
     }
-  }
-
-  private void verifyUpload() {
   }
 
 }
