@@ -14,6 +14,7 @@ public class ImageDocument {
     New, Active, Canceled;
   }
 
+  private String id;
   private String title;
   private String[] tags;
   private State state;
@@ -24,6 +25,14 @@ public class ImageDocument {
     state = New;
     tags = new String[0];
     uploaded = LocalDateTime.now();
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public String getTitle() {

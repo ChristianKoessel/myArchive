@@ -4,6 +4,8 @@ import com.mashape.unirest.http.Unirest;
 import de.koessel.myarchive.ArchiveProperties;
 import de.koessel.myarchive.document.ImageDocument;
 import de.koessel.myarchive.util.Helper;
+import de.koessel.myarchive.util.database.CouchDbHelper;
+import de.koessel.myarchive.util.database.DocumentId;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -36,8 +38,8 @@ public class Importer {
 
   public void run() throws Exception {
     Helper.logProperties(properties);
-    Helper.checkServer();
-    Helper.checkDatabase();
+    CouchDbHelper.checkServer();
+    CouchDbHelper.checkDatabase();
     uploadImages();
     Unirest.shutdown();
   }
@@ -61,10 +63,11 @@ public class Importer {
         document.setRefDate(properties.getProperty(PROPERTY_REFERENCE_DATE));
       }
       document.setTags(properties.getTags());
-
-      //todo: Klasse für UUID + Revision eines Dokuments
-      String uuid = Helper.createDocument(new JSONObject(document));
-      Helper.uploadAttachment(uuid, image.getFullImage());
+      DocumentId documentId = CouchDbHelper.createDocument(new JSONObject(document));
+      CouchDbHelper.uploadAttachment(documentId, image.getFullImage());
+      if (image.hasThumbnail()) {
+        CouchDbHelper.uploadAttachment(documentId, image.getThumbnailImage());
+      }
       deleteImage(image);
     }
   }

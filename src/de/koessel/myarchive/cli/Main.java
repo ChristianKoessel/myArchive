@@ -1,7 +1,7 @@
 package de.koessel.myarchive.cli;
 
 import de.koessel.myarchive.cli.commands.*;
-import de.koessel.myarchive.util.Commands;
+import de.koessel.myarchive.util.commands.Commands;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

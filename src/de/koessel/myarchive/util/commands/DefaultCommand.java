@@ -1,4 +1,4 @@
-package de.koessel.myarchive.util;
+package de.koessel.myarchive.util.commands;
 
 import org.apache.commons.cli.Options;
 

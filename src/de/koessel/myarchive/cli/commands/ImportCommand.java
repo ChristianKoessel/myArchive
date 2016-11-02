@@ -2,8 +2,8 @@ package de.koessel.myarchive.cli.commands;
 
 import de.koessel.myarchive.ArchiveProperties;
 import de.koessel.myarchive.cli.Importer;
-import de.koessel.myarchive.util.DefaultCommand;
 import de.koessel.myarchive.util.Helper;
+import de.koessel.myarchive.util.commands.DefaultCommand;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 
