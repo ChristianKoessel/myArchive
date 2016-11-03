@@ -14,15 +14,15 @@ import static de.koessel.myarchive.ArchiveProperties.THUMBNAIL_FORMAT;
  */
 class Image {
 
-  private File fullImage;
+  private File image;
   private File thumbnailImage;
 
-  Image(File fullImage) {
-    this.fullImage = fullImage;
+  Image(File image) {
+    this.image = image;
   }
 
-  File getFullImage() {
-    return fullImage;
+  File getImage() {
+    return image;
   }
 
   File getThumbnailImage() {
@@ -30,7 +30,7 @@ class Image {
   }
 
   void createThumbnailImage(int size) throws IOException {
-    List<File> thumbnail = Thumbnails.of(fullImage)
+    List<File> thumbnail = Thumbnails.of(image)
           .allowOverwrite(true)
           .size(size, size)
           .outputFormat(THUMBNAIL_FORMAT)
@@ -41,7 +41,7 @@ class Image {
   }
 
   String getName() {
-    return fullImage.getName();
+    return image.getName();
   }
 
   boolean hasThumbnail() {

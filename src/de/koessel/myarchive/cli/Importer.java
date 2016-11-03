@@ -56,7 +56,7 @@ public class Importer {
 
   private void uploadImages() throws Exception {
     for (Image image : images) {
-      logger.info("---- " + image.getFullImage() + " ----");
+      logger.info("---- " + image.getImage() + " ----");
       createThumbnail(image);
       ImageDocument document = new ImageDocument();
       document.setTitle(image.getName());
@@ -65,7 +65,7 @@ public class Importer {
       }
       document.setTags(properties.getTags());
       DocumentId documentId = CouchDbHelper.createDocument(document);
-      CouchDbHelper.uploadAttachment(documentId, image.getFullImage());
+      CouchDbHelper.uploadAttachment(documentId, image.getImage());
       if (image.hasThumbnail()) {
         CouchDbHelper.uploadAttachment(documentId, image.getThumbnailImage());
       }
@@ -79,8 +79,8 @@ public class Importer {
       Helper.deleteFile(image.getThumbnailImage());
     }
     if (!properties.isKeepImages()) {
-      logger.info("Deleting image " + image.getFullImage());
-      Helper.deleteFile(image.getFullImage());
+      logger.info("Deleting image " + image.getImage());
+      Helper.deleteFile(image.getImage());
     }
   }
 

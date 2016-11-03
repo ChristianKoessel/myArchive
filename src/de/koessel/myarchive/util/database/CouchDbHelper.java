@@ -10,8 +10,11 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static de.koessel.myarchive.ArchiveProperties.*;
 
@@ -20,6 +23,11 @@ import static de.koessel.myarchive.ArchiveProperties.*;
  */
 public class CouchDbHelper {
   private static Logger logger = LogManager.getLogger();
+  private static MimetypesFileTypeMap fileTypeMap = (MimetypesFileTypeMap) MimetypesFileTypeMap.getDefaultFileTypeMap();
+
+  static {
+    fileTypeMap.addMimeTypes("application/pdf pdf PDF\nimage/png png PNG");
+  }
 
   public static void checkServer() throws Exception {
     ArchiveProperties properties = ArchiveProperties.getInstance();
@@ -107,15 +115,16 @@ public class CouchDbHelper {
   public static void uploadAttachment(DocumentId documentId, File file) throws Exception {
     ArchiveProperties properties = ArchiveProperties.getInstance();
     logger.info("Uploading attachment " + file.getName());
+    byte[] content = Files.readAllBytes(Paths.get(file.toURI()));
     HttpResponse<Returncode> response = Unirest
           .put(properties.getProperty(PROPERTY_SERVER) + "/{database}/{uuid}/{file}")
-          .header("Content-Type", "image/jpeg")
+          .header("Content-Type", fileTypeMap.getContentType(file))
           .routeParam("database", properties.getProperty(ArchiveProperties.PROPERTY_DATABASE))
           .routeParam("uuid", documentId.getUuid())
           .routeParam("file", file.getName())
           .queryString("rev", documentId.getRevision())
           .basicAuth(properties.getProperty(PROPERTY_USERNAME), properties.getProperty(PROPERTY_PASSWORD))
-          .field("file", file)
+          .body(content)
           .asObject(Returncode.class);
     checkResponseCode(response);
     Returncode returncode = response.getBody();
