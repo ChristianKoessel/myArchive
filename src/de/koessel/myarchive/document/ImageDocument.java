@@ -121,6 +121,7 @@ public class ImageDocument {
           ", state=" + state +
           ", refDate=" + refDate +
           ", uploaded=" + uploaded +
+          ", id=" + id +
           '}';
   }
 }

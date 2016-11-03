@@ -16,6 +16,14 @@ public class DocumentId {
     return revision;
   }
 
+  public void setRevision(String revision) {
+    this.revision = revision;
+  }
+
+  public DocumentId(String uuid) {
+    this.uuid = uuid;
+  }
+
   public DocumentId(String uuid, String revision) {
     this.uuid = uuid;
     this.revision = revision;

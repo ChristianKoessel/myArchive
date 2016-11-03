@@ -17,6 +17,8 @@ public class ArchiveProperties extends Properties {
   public static final String PROPERTY_DATABASE = "database";
   public static final String PROPERTY_TAGS = "tags";
   public static final String PROPERTY_SERVER = "couchdb.url";
+  public static final String PROPERTY_USERNAME = "couchdb.username";
+  public static final String PROPERTY_PASSWORD = "couchdb.password";
 
   public static final String THUMBNAIL_FORMAT = "png";
   public static final String THUMBNAIL_SIZE_DEFAULT = "80";

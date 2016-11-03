@@ -4,11 +4,11 @@ import com.mashape.unirest.http.Unirest;
 import de.koessel.myarchive.ArchiveProperties;
 import de.koessel.myarchive.document.ImageDocument;
 import de.koessel.myarchive.util.Helper;
+import de.koessel.myarchive.util.ObjectMapper;
 import de.koessel.myarchive.util.database.CouchDbHelper;
 import de.koessel.myarchive.util.database.DocumentId;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +38,7 @@ public class Importer {
 
   public void run() throws Exception {
     Helper.logProperties(properties);
+    Unirest.setObjectMapper(new ObjectMapper());
     CouchDbHelper.checkServer();
     CouchDbHelper.checkDatabase();
     uploadImages();
@@ -53,7 +54,7 @@ public class Importer {
     }
   }
 
-  private void uploadImages() {
+  private void uploadImages() throws Exception {
     for (Image image : images) {
       logger.info("---- " + image.getFullImage() + " ----");
       createThumbnail(image);
@@ -63,7 +64,7 @@ public class Importer {
         document.setRefDate(properties.getProperty(PROPERTY_REFERENCE_DATE));
       }
       document.setTags(properties.getTags());
-      DocumentId documentId = CouchDbHelper.createDocument(new JSONObject(document));
+      DocumentId documentId = CouchDbHelper.createDocument(document);
       CouchDbHelper.uploadAttachment(documentId, image.getFullImage());
       if (image.hasThumbnail()) {
         CouchDbHelper.uploadAttachment(documentId, image.getThumbnailImage());
