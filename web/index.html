@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>myArchive</title>
+    <link href="css/myarchive.css" rel="stylesheet">
+    <link href="libraries/bootstrap.min.css" rel="stylesheet">
+    <link href="libraries/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Zeitstrahl Test & Demo</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Datenbanken</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container-fluid">
+
+        <div class="row" id="canvas">
+            <div class="col-lg-12">
+                <canvas id="canvas-timeline" width="900" height="400"></canvas>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <h3>Demo</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <button class="btn btn-md btn-default" id="demo1" type="button" title="Demonstration Blockarten">
+                        Demo 1
+                    </button>
+                    <button class="btn btn-md btn-default" id="demo2" type="button" title="Beispiel Zeitstrahl-API">Demo
+                        2
+                    </button>
+                    <button class="btn btn-md btn-default" id="demo3" type="button"
+                            title="Beispiel Zeitstrahl aus JSON-Daten">Demo 3
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <h3>Functions</h3>
+            </div>
+        </div>
+
+        <div class="row" id="timeline-functions">
+            <div class="col-lg-12">
+                <form>
+                    <label class="label-lg" for="canvas-width">Width:</label>
+                    <input class="form-input" id="canvas-width" name="width" type="number" min="100" max="1500"
+                           step="25" value="900"/>
+                    <label class="label-lg" for="canvas-height">Height:</label>
+                    <input class="form-input" id="canvas-height" name="height" type="number" min="100" max="500"
+                           step="10" value="400"/>
+                    <button class="btn btn-md btn-default" id="resize" type="button">Resize</button>
+                    <button class="btn btn-md btn-default" id="invalidate" type="button">Invalidate</button>
+                    <button class="btn btn-md btn-default" id="clear" type="button">Clear</button>
+                    <button class="btn btn-md btn-default" id="scrolltotopright" type="button">ScrollToTopRight</button>
+                    <label class="label-lg" for="item">Item:</label>
+                    <input class="form-input" id="item" name="item" type="number" value=""/>
+                    <button class="btn btn-md btn-default" id="scrollitemintoview" type="button">ScrollItemIntoView
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <h3>Events</h3>
+            </div>
+        </div>
+
+        <div class="row" id="events">
+            <div class="col-lg-2">
+                <ul class="list-group">
+                    <li class="list-group-item" id="event-selectedItemChanged">SelectedItemChanged</li>
+                    <li class="list-group-item" id="event-itemClicked">ItemClicked</li>
+                    <li class="list-group-item" id="event-itemDoubleClicked">ItemDoubleClicked</li>
+                    <li class="list-group-item" id="event-itemRightClicked">ItemRightClicked</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="libraries/jquery-3.1.0.min.js"></script>
+<script src="libraries/bootstrap.min.js"></script>
+<script src="js/myarchive.js"></script>
+
+</body>
+</html>
